@@ -1,0 +1,1085 @@
+#
+inherit:              false
+imports:              [] 
+
+# Allows you to filter which files are included in the review; by default, all files.
+filter:               
+    paths:                [src/*] # Example: [src/*, tests/*]
+    excluded_paths:       [app/*, bin/*, build/*, layout/*, runners/*, shared/*, tools/*, vendor/*, web/*] # Example: [tests/*/Fixture/*]
+
+# Allows you to configure settings for tracking changes to your code like patterns for bug/feature commits.
+changetracking:       
+    bug_patterns:         
+
+        # Default:
+        - \bfix(?:es|ed)?\b
+    feature_patterns:     
+
+        # Defaults:
+        - \badd(?:s|ed)?\b
+        - \bimplement(?:s|ed)?\b
+before_commands:      [] 
+after_commands:       [] 
+#artifacts:
+#
+#    # Prototype
+#    name:                 []
+tools:                
+
+    # Runs the JSHint static analysis tool.
+    js_hint:              
+
+        # Whether to use JSHint's native config file, .jshintrc.
+        use_native_config:    true 
+        extensions:           
+
+            # Default:
+            - js
+        enabled:              false 
+#        filter:
+#            paths:                []
+#            excluded_paths:       []
+
+        # All options that are supported by JSHint (see http://jshint.com/docs/); only available when "use_native_config" is set to "false".
+        config:              {} 
+#        path_configs:
+#
+#            # Prototype
+#            -
+#                paths:                []
+#                enabled:              true
+#
+#                # All options that are supported by JSHint (see http://jshint.com/docs/); only available when "use_native_config" is set to "false".
+#                config:              {}
+
+    # Runs the PHP Mess Detector (http://phpmd.org).
+    php_mess_detector:    
+        enabled:              true
+        extensions:
+            - php
+        command:              phpmd
+#        filter:
+#            paths:                []
+#            excluded_paths:       []
+        config:               
+            ruleset:              ~ 
+            code_size_rules:      
+                cyclomatic_complexity:  false 
+                npath_complexity:     false 
+                excessive_method_length:  false 
+                excessive_class_length:  false 
+                excessive_parameter_list:  false 
+                excessive_public_count:  false 
+                too_many_fields:      false 
+                too_many_methods:     false 
+                excessive_class_complexity:  false 
+            design_rules:         
+                exit_expression:      true 
+                eval_expression:      true 
+                goto_statement:       true 
+                number_of_class_children:  false 
+                depth_of_inheritance:  false 
+                coupling_between_objects:  false 
+            unused_code_rules:    
+                unused_private_field:  true 
+                unused_local_variable:  false 
+                unused_private_method:  false 
+                unused_formal_parameter:  false 
+            naming_rules:         
+                short_variable:       false 
+                long_variable:        false 
+                short_method:         false 
+                constructor_conflict:  true 
+                constant_naming:      true 
+                boolean_method_name:  false 
+            controversial_rules:  
+                superglobals:         true 
+                camel_case_class_name:  false 
+                camel_case_property_name:  false 
+                camel_case_method_name:  false 
+                camel_case_parameter_name:  false 
+                camel_case_variable_name:  false 
+#        path_configs:
+#
+#            # Prototype
+#            -
+#                paths:                []
+#                enabled:              true
+#                config:
+#                    ruleset:              ~
+#                    code_size_rules:
+#                        cyclomatic_complexity:  false
+#                        npath_complexity:     false
+#                        excessive_method_length:  false
+#                        excessive_class_length:  false
+#                        excessive_parameter_list:  false
+#                        excessive_public_count:  false
+#                        too_many_fields:      false
+#                        too_many_methods:     false
+#                        excessive_class_complexity:  false
+#                    design_rules:
+#                        exit_expression:      true
+#                        eval_expression:      true
+#                        goto_statement:       true
+#                        number_of_class_children:  false
+#                        depth_of_inheritance:  false
+#                        coupling_between_objects:  false
+#                    unused_code_rules:
+#                        unused_private_field:  true
+#                        unused_local_variable:  false
+#                        unused_private_method:  false
+#                        unused_formal_parameter:  false
+#                    naming_rules:
+#                        short_variable:       false
+#                        long_variable:        false
+#                        short_method:         false
+#                        constructor_conflict:  true
+#                        constant_naming:      true
+#                        boolean_method_name:  false
+#                    controversial_rules:
+#                        superglobals:         true
+#                        camel_case_class_name:  false
+#                        camel_case_property_name:  false
+#                        camel_case_method_name:  false
+#                        camel_case_parameter_name:  false
+#                        camel_case_variable_name:  false
+
+    # Runs the PHP CS Fixer (http://cs.sensiolabs.org/).
+    php_cs_fixer:         
+        enabled:              false
+        extensions:
+            - php
+        command:              php-cs-fixer 
+#        filter:
+#            paths:                []
+#            excluded_paths:       []
+        config:
+            level:                psr1 # Allowed Values: "psr0", "psr1", "psr2", "all", "custom"
+            fixers:               
+                indentation:          false 
+                linefeed:             false 
+                trailing_spaces:      false 
+                unused_use:           false 
+                phpdoc_params:        false 
+                visibility:           false 
+                return:               false 
+                short_tag:            false 
+                braces:               false 
+                include:              false 
+                php_closing_tag:      false 
+                extra_empty_lines:    false 
+                controls_spaces:      false 
+                elseif:               false 
+                eof_ending:           false 
+#        path_configs:
+#
+#            # Prototype
+#            -
+#                paths:                []
+#                enabled:              true
+#                config:
+#                    level:                psr1 # Allowed Values: "psr0", "psr1", "psr2", "all", "custom"
+#                    fixers:
+#                        indentation:          false
+#                        linefeed:             false
+#                        trailing_spaces:      false
+#                        unused_use:           false
+#                        phpdoc_params:        false
+#                        visibility:           false
+#                        return:               false
+#                        short_tag:            false
+#                        braces:               false
+#                        include:              false
+#                        php_closing_tag:      false
+#                        extra_empty_lines:    false
+#                        controls_spaces:      false
+#                        elseif:               false
+#                        eof_ending:           false
+
+    # Runs Scrutinizer's PHP Analyzer Tool
+    php_analyzer:         
+        enabled:              true
+        extensions:
+            - php
+#        filter:
+#            paths:                []
+#            excluded_paths:       []
+
+    # Runs PHP Code Sniffer
+    php_code_sniffer:     
+        enabled:              false
+        extensions:
+            - php
+        command:              phpcs
+#        filter:
+#            paths:                []
+#            excluded_paths:       []
+        config:               
+            tab_width:            0 
+            encoding:             utf8 
+            ruleset:              ~ 
+            standard:             custom # Allowed Values: "custom", "PEAR", "PHPCS", "PSR1", "PSR2", "Squiz", "Zend", "WordPress", "Drupal"
+            sniffs:               
+                psr1:                 
+                    classes:              
+                        class_declaration_sniff:  false 
+                    files:                
+                        side_effects_sniff:   true 
+                generic:              
+                    code_analysis:        
+                        unused_function_parameter_sniff:  false 
+                        for_loop_with_test_function_call_sniff:  true 
+                        unconditional_if_statement_sniff:  false 
+                        empty_statement_sniff:  true 
+                        unnecessary_final_modifier_sniff:  true 
+                        for_loop_should_be_while_loop_sniff:  false 
+                        useless_overriding_method_sniff:  true 
+                        jumbled_incrementer_sniff:  true 
+                    classes:              
+                        duplicate_class_name_sniff:  false 
+                    white_space:          
+                        disallow_tab_indent_sniff:  false 
+                        scope_indent_sniff:   false 
+                        disallow_space_indent_sniff:  false 
+                    php:                  
+                        disallow_short_open_tag_sniff:  false 
+                        sapi_usage_sniff:     false 
+                        no_silenced_errors_sniff:  false 
+                        deprecated_functions_sniff:  true 
+                        upper_case_constant_sniff:  false 
+                        closing_php_tag_sniff:  false 
+                        forbidden_functions_sniff:  false 
+                        lower_case_constant_sniff:  false 
+                        character_before_php_opening_tag_sniff:  true 
+                        lower_case_keyword_sniff:  false 
+                    formatting:           
+                        multiple_statement_alignment_sniff:  false 
+                        no_space_after_cast_sniff:  false 
+                        space_after_cast_sniff:  false 
+                        disallow_multiple_statements_sniff:  false 
+                    functions:            
+                        function_call_argument_spacing_sniff:  false 
+                        opening_function_brace_kernighan_ritchie_sniff:  false 
+                        opening_function_brace_bsd_allman_sniff:  false 
+                        call_time_pass_by_reference_sniff:  false 
+                    files:                
+                        one_interface_per_file_sniff:  false 
+                        end_file_newline_sniff:  false 
+                        line_length_sniff:    false 
+                        inline_html_sniff:    false 
+                        byte_order_mark_sniff:  false 
+                        end_file_no_newline_sniff:  false 
+                        one_class_per_file_sniff:  false 
+                        line_endings_sniff:   false 
+                    version_control:      
+                        subversion_properties_sniff:  false 
+                    commenting:           
+                        fixme_sniff:          false 
+                        todo_sniff:           false 
+                    control_structures:   
+                        inline_control_structure_sniff:  false 
+                    strings:              
+                        unnecessary_string_concat_sniff:  false 
+                    naming_conventions:   
+                        camel_caps_function_name_sniff:  false 
+                        constructor_name_sniff:  false 
+                        upper_case_constant_name_sniff:  false 
+                    metrics:              
+                        cyclomatic_complexity_sniff:  false 
+                        nesting_level_sniff:  false 
+                zend:                 
+                    debug:                
+                        code_analyzer_sniff:  false 
+                    files:                
+                        closing_tag_sniff:    false 
+                    naming_conventions:   
+                        valid_variable_name_sniff:  false 
+                squiz:                
+                    scope:                
+                        static_this_usage_sniff:  true 
+                        method_scope_sniff:   true 
+                        member_var_scope_sniff:  true 
+                    code_analysis:        
+                        empty_statement_sniff:  false 
+                    classes:              
+                        lowercase_class_keywords_sniff:  false 
+                        valid_class_name_sniff:  false 
+                        class_file_name_sniff:  false 
+                        self_member_reference_sniff:  true 
+                        class_declaration_sniff:  false 
+                    arrays:               
+                        array_bracket_spacing_sniff:  false 
+                        array_declaration_sniff:  false 
+                    objects:              
+                        object_instantiation_sniff:  false 
+                    white_space:          
+                        logical_operator_spacing_sniff:  false 
+                        language_construct_spacing_sniff:  false 
+                        operator_spacing_sniff:  false 
+                        control_structure_spacing_sniff:  false 
+                        function_opening_brace_space_sniff:  false 
+                        function_spacing_sniff:  false 
+                        superfluous_whitespace_sniff:  false 
+                        member_var_spacing_sniff:  false 
+                        scope_closing_brace_sniff:  false 
+                        scope_keyword_spacing_sniff:  false 
+                        function_closing_brace_space_sniff:  false 
+                        semicolon_spacing_sniff:  false 
+                        cast_spacing_sniff:   false 
+                        object_operator_spacing_sniff:  false 
+                    php:                  
+                        disallow_comparison_assignment_sniff:  false 
+                        disallow_size_functions_in_loops_sniff:  false 
+                        heredoc_sniff:        false 
+                        disallow_ob_end_flush_sniff:  false 
+                        inner_functions_sniff:  false 
+                        forbidden_functions_sniff:  false 
+                        eval_sniff:           false 
+                        lowercase_p_h_p_functions_sniff:  false 
+                        discouraged_functions_sniff:  false 
+                        embedded_php_sniff:   false 
+                        commented_out_code_sniff:  false 
+                        disallow_inline_if_sniff:  false 
+                        disallow_multiple_assignments_sniff:  false 
+                        global_keyword_sniff:  false 
+                        non_executable_code_sniff:  true 
+                    formatting:           
+                        operator_bracket_sniff:  false 
+                    functions:            
+                        lowercase_function_keywords_sniff:  false 
+                        global_function_sniff:  false 
+                        function_duplicate_argument_sniff:  false 
+                        multi_line_function_declaration_sniff:  false 
+                        function_declaration_argument_spacing_sniff:  false 
+                        function_declaration_sniff:  false 
+                    files:                
+                        file_extension_sniff:  false 
+                    commenting:           
+                        inline_comment_sniff:  false 
+                        post_statement_comment_sniff:  false 
+                        class_comment_sniff:  false 
+                        doc_comment_alignment_sniff:  false 
+                        block_comment_sniff:  false 
+                        function_comment_sniff:  false 
+                        function_comment_throw_tag_sniff:  false 
+                        variable_comment_sniff:  false 
+                        empty_catch_comment_sniff:  false 
+                        file_comment_sniff:   false 
+                        long_condition_closing_comment_sniff:  false 
+                        closing_declaration_comment_sniff:  false 
+                    control_structures:   
+                        control_signature_sniff:  false 
+                        lowercase_declaration_sniff:  false 
+                        inline_if_declaration_sniff:  false 
+                        for_each_loop_declaration_sniff:  false 
+                        for_loop_declaration_sniff:  false 
+                        switch_declaration_sniff:  false 
+                        else_if_declaration_sniff:  false 
+                    strings:              
+                        echoed_strings_sniff:  false 
+                        concatenation_spacing_sniff:  false 
+                        double_quote_usage_sniff:  false 
+                    naming_conventions:   
+                        valid_function_name_sniff:  false 
+                        valid_variable_name_sniff:  false 
+                        constant_case_sniff:  false 
+                    operators:            
+                        increment_decrement_usage_sniff:  false 
+                        valid_logical_operators_sniff:  false 
+                        comparison_operator_usage_sniff:  false 
+                my_source:            
+                    php:                  
+                        return_function_value_sniff:  false 
+                        eval_object_factory_sniff:  false 
+                    debug:                
+                        debug_code_sniff:     false 
+                    commenting:           
+                        function_comment_sniff:  false 
+                psr2:                 
+                    classes:              
+                        property_declaration_sniff:  false 
+                        class_declaration_sniff:  false 
+                    methods:              
+                        method_declaration_sniff:  false 
+                    namespaces:           
+                        namespace_declaration_sniff:  false 
+                        use_declaration_sniff:  false 
+                    files:                
+                        end_file_newline_sniff:  false 
+                    control_structures:   
+                        control_structure_spacing_sniff:  false 
+                        switch_declaration_sniff:  false 
+                        else_if_declaration_sniff:  false 
+                pear:                 
+                    classes:              
+                        class_declaration_sniff:  false 
+                    white_space:          
+                        object_operator_indent_sniff:  false 
+                        scope_indent_sniff:   false 
+                        scope_closing_brace_sniff:  false 
+                    formatting:           
+                        multi_line_assignment_sniff:  false 
+                    functions:            
+                        function_call_signature_sniff:  false 
+                        function_declaration_sniff:  false 
+                        valid_default_value_sniff:  false 
+                    files:                
+                        including_file_sniff:  false 
+                    commenting:           
+                        inline_comment_sniff:  false 
+                        class_comment_sniff:  false 
+                        function_comment_sniff:  false 
+                        file_comment_sniff:   false 
+                    control_structures:   
+                        control_signature_sniff:  false 
+                        multi_line_condition_sniff:  false 
+                    naming_conventions:   
+                        valid_function_name_sniff:  false 
+                        valid_variable_name_sniff:  false 
+                        valid_class_name_sniff:  false 
+                wordpress:            
+                    arrays:               
+                        array_declaration_sniff:  false 
+                    classes:              
+                        valid_class_name_sniff:  false 
+                    files:                
+                        file_name_sniff:      false 
+                    formatting:           
+                        multiple_statement_alignment_sniff:  false 
+                    functions:            
+                        function_call_signature_sniff:  false 
+                        function_declaration_argument_spacing_sniff:  false 
+                    naming_conventions:   
+                        valid_function_name_sniff:  false 
+                    objects:              
+                        object_instantiation_sniff:  false 
+                    php:                  
+                        discouraged_functions_sniff:  false 
+                    strings:              
+                        double_quote_usage_sniff:  false 
+                    white_space:          
+                        control_structure_spacing_sniff:  false 
+                        operator_spacing_sniff:  false 
+                        php_indent_sniff:     false 
+                    xss:                  
+                        escape_output_sniff:  false 
+#        path_configs:
+#
+#            # Prototype
+#            -
+#                paths:                []
+#                enabled:              true
+#                config:
+#                    tab_width:            0
+#                    encoding:             utf8
+#                    ruleset:              ~
+#                    standard:             custom # Allowed Values: "custom", "PEAR", "PHPCS", "PSR1", "PSR2", "Squiz", "Zend", "WordPress", "Drupal"
+#                    sniffs:
+#                        psr1:
+#                            classes:
+#                                class_declaration_sniff:  false
+#                            files:
+#                                side_effects_sniff:   true
+#                        generic:
+#                            code_analysis:
+#                                unused_function_parameter_sniff:  false
+#                                for_loop_with_test_function_call_sniff:  true
+#                                unconditional_if_statement_sniff:  false
+#                                empty_statement_sniff:  true
+#                                unnecessary_final_modifier_sniff:  true
+#                                for_loop_should_be_while_loop_sniff:  false
+#                                useless_overriding_method_sniff:  true
+#                                jumbled_incrementer_sniff:  true
+#                            classes:
+#                                duplicate_class_name_sniff:  false
+#                            white_space:
+#                                disallow_tab_indent_sniff:  false
+#                                scope_indent_sniff:   false
+#                                disallow_space_indent_sniff:  false
+#                            php:
+#                                disallow_short_open_tag_sniff:  false
+#                                sapi_usage_sniff:     false
+#                                no_silenced_errors_sniff:  false
+#                                deprecated_functions_sniff:  true
+#                                upper_case_constant_sniff:  false
+#                                closing_php_tag_sniff:  false
+#                                forbidden_functions_sniff:  false
+#                                lower_case_constant_sniff:  false
+#                                character_before_php_opening_tag_sniff:  true
+#                                lower_case_keyword_sniff:  false
+#                            formatting:
+#                                multiple_statement_alignment_sniff:  false
+#                                no_space_after_cast_sniff:  false
+#                                space_after_cast_sniff:  false
+#                                disallow_multiple_statements_sniff:  false
+#                            functions:
+#                                function_call_argument_spacing_sniff:  false
+#                                opening_function_brace_kernighan_ritchie_sniff:  false
+#                                opening_function_brace_bsd_allman_sniff:  false
+#                                call_time_pass_by_reference_sniff:  false
+#                            files:
+#                                one_interface_per_file_sniff:  false
+#                                end_file_newline_sniff:  false
+#                                line_length_sniff:    false
+#                                inline_html_sniff:    false
+#                                byte_order_mark_sniff:  false
+#                                end_file_no_newline_sniff:  false
+#                                one_class_per_file_sniff:  false
+#                                line_endings_sniff:   false
+#                            version_control:
+#                                subversion_properties_sniff:  false
+#                            commenting:
+#                                fixme_sniff:          false
+#                                todo_sniff:           false
+#                            control_structures:
+#                                inline_control_structure_sniff:  false
+#                            strings:
+#                                unnecessary_string_concat_sniff:  false
+#                            naming_conventions:
+#                                camel_caps_function_name_sniff:  false
+#                                constructor_name_sniff:  false
+#                                upper_case_constant_name_sniff:  false
+#                            metrics:
+#                                cyclomatic_complexity_sniff:  false
+#                                nesting_level_sniff:  false
+#                        zend:
+#                            debug:
+#                                code_analyzer_sniff:  false
+#                            files:
+#                                closing_tag_sniff:    false
+#                            naming_conventions:
+#                                valid_variable_name_sniff:  false
+#                        squiz:
+#                            scope:
+#                                static_this_usage_sniff:  true
+#                                method_scope_sniff:   true
+#                                member_var_scope_sniff:  true
+#                            code_analysis:
+#                                empty_statement_sniff:  false
+#                            classes:
+#                                lowercase_class_keywords_sniff:  false
+#                                valid_class_name_sniff:  false
+#                                class_file_name_sniff:  false
+#                                self_member_reference_sniff:  true
+#                                class_declaration_sniff:  false
+#                            arrays:
+#                                array_bracket_spacing_sniff:  false
+#                                array_declaration_sniff:  false
+#                            objects:
+#                                object_instantiation_sniff:  false
+#                            white_space:
+#                                logical_operator_spacing_sniff:  false
+#                                language_construct_spacing_sniff:  false
+#                                operator_spacing_sniff:  false
+#                                control_structure_spacing_sniff:  false
+#                                function_opening_brace_space_sniff:  false
+#                                function_spacing_sniff:  false
+#                                superfluous_whitespace_sniff:  false
+#                                member_var_spacing_sniff:  false
+#                                scope_closing_brace_sniff:  false
+#                                scope_keyword_spacing_sniff:  false
+#                                function_closing_brace_space_sniff:  false
+#                                semicolon_spacing_sniff:  false
+#                                cast_spacing_sniff:   false
+#                                object_operator_spacing_sniff:  false
+#                            php:
+#                                disallow_comparison_assignment_sniff:  false
+#                                disallow_size_functions_in_loops_sniff:  false
+#                                heredoc_sniff:        false
+#                                disallow_ob_end_flush_sniff:  false
+#                                inner_functions_sniff:  false
+#                                forbidden_functions_sniff:  false
+#                                eval_sniff:           false
+#                                lowercase_p_h_p_functions_sniff:  false
+#                                discouraged_functions_sniff:  false
+#                                embedded_php_sniff:   false
+#                                commented_out_code_sniff:  false
+#                                disallow_inline_if_sniff:  false
+#                                disallow_multiple_assignments_sniff:  false
+#                                global_keyword_sniff:  false
+#                                non_executable_code_sniff:  true
+#                            formatting:
+#                                operator_bracket_sniff:  false
+#                            functions:
+#                                lowercase_function_keywords_sniff:  false
+#                                global_function_sniff:  false
+#                                function_duplicate_argument_sniff:  false
+#                                multi_line_function_declaration_sniff:  false
+#                                function_declaration_argument_spacing_sniff:  false
+#                                function_declaration_sniff:  false
+#                            files:
+#                                file_extension_sniff:  false
+#                            commenting:
+#                                inline_comment_sniff:  false
+#                                post_statement_comment_sniff:  false
+#                                class_comment_sniff:  false
+#                                doc_comment_alignment_sniff:  false
+#                                block_comment_sniff:  false
+#                                function_comment_sniff:  false
+#                                function_comment_throw_tag_sniff:  false
+#                                variable_comment_sniff:  false
+#                                empty_catch_comment_sniff:  false
+#                                file_comment_sniff:   false
+#                                long_condition_closing_comment_sniff:  false
+#                                closing_declaration_comment_sniff:  false
+#                            control_structures:
+#                                control_signature_sniff:  false
+#                                lowercase_declaration_sniff:  false
+#                                inline_if_declaration_sniff:  false
+#                                for_each_loop_declaration_sniff:  false
+#                                for_loop_declaration_sniff:  false
+#                                switch_declaration_sniff:  false
+#                                else_if_declaration_sniff:  false
+#                            strings:
+#                                echoed_strings_sniff:  false
+#                                concatenation_spacing_sniff:  false
+#                                double_quote_usage_sniff:  false
+#                            naming_conventions:
+#                                valid_function_name_sniff:  false
+#                                valid_variable_name_sniff:  false
+#                                constant_case_sniff:  false
+#                            operators:
+#                                increment_decrement_usage_sniff:  false
+#                                valid_logical_operators_sniff:  false
+#                                comparison_operator_usage_sniff:  false
+#                        my_source:
+#                            php:
+#                                return_function_value_sniff:  false
+#                                eval_object_factory_sniff:  false
+#                            debug:
+#                                debug_code_sniff:     false
+#                            commenting:
+#                                function_comment_sniff:  false
+#                        psr2:
+#                            classes:
+#                                property_declaration_sniff:  false
+#                                class_declaration_sniff:  false
+#                            methods:
+#                                method_declaration_sniff:  false
+#                            namespaces:
+#                                namespace_declaration_sniff:  false
+#                                use_declaration_sniff:  false
+#                            files:
+#                                end_file_newline_sniff:  false
+#                            control_structures:
+#                                control_structure_spacing_sniff:  false
+#                                switch_declaration_sniff:  false
+#                                else_if_declaration_sniff:  false
+#                        pear:
+#                            classes:
+#                                class_declaration_sniff:  false
+#                            white_space:
+#                                object_operator_indent_sniff:  false
+#                                scope_indent_sniff:   false
+#                                scope_closing_brace_sniff:  false
+#                            formatting:
+#                                multi_line_assignment_sniff:  false
+#                            functions:
+#                                function_call_signature_sniff:  false
+#                                function_declaration_sniff:  false
+#                                valid_default_value_sniff:  false
+#                            files:
+#                                including_file_sniff:  false
+#                            commenting:
+#                                inline_comment_sniff:  false
+#                                class_comment_sniff:  false
+#                                function_comment_sniff:  false
+#                                file_comment_sniff:   false
+#                            control_structures:
+#                                control_signature_sniff:  false
+#                                multi_line_condition_sniff:  false
+#                            naming_conventions:
+#                                valid_function_name_sniff:  false
+#                                valid_variable_name_sniff:  false
+#                                valid_class_name_sniff:  false
+#                        wordpress:
+#                            arrays:
+#                                array_declaration_sniff:  false
+#                            classes:
+#                                valid_class_name_sniff:  false
+#                            files:
+#                                file_name_sniff:      false
+#                            formatting:
+#                                multiple_statement_alignment_sniff:  false
+#                            functions:
+#                                function_call_signature_sniff:  false
+#                                function_declaration_argument_spacing_sniff:  false
+#                            naming_conventions:
+#                                valid_function_name_sniff:  false
+#                            objects:
+#                                object_instantiation_sniff:  false
+#                            php:
+#                                discouraged_functions_sniff:  false
+#                            strings:
+#                                double_quote_usage_sniff:  false
+#                            white_space:
+#                                control_structure_spacing_sniff:  false
+#                                operator_spacing_sniff:  false
+#                                php_indent_sniff:     false
+#                            xss:
+#                                escape_output_sniff:  false
+
+    # Checks your dependencies against sensiolabs's security advisory database.
+    sensiolabs_security_checker:
+        enabled:              false
+#        filter:
+#            paths:                []
+#            excluded_paths:       []
+
+    # Collects code coverage information about the changeset.
+    php_code_coverage:
+        enabled:              false
+        test_command:         phpunit -c ./app/phpunit.xml.dist
+        config_path:          ./app/phpunit.xml.dist
+
+        # (deprecated) Whether code coverage information should only be generated for changesets.
+        only_changesets:      false 
+#        filter:
+#            paths:                []
+#            excluded_paths:       []
+
+    # Runs PHP Copy/Paste Detector
+    php_cpd:
+        enabled:              true
+        command:              phpcpd
+
+        # A list of excluded directories.
+        excluded_dirs:
+            - vendor
+            - app
+            - web
+            - src/Op/CartBundle/DataFixtures
+            - src/Op/CartBundle/Tests
+            - src/Op/DvorBundle/Tests
+
+        # A list of names that should be scanned (default: *.php)
+        names:
+            - "*.php"
+
+        # Minimum number of identical lines (default: 5)
+        min_lines:            4
+
+        # Minimum number of identical tokens (default: 70)
+        min_tokens:           50
+
+    # Analyzes the size and structure of a PHP project.
+    php_loc:
+        enabled:              true
+        command:              phploc
+        names:
+            - "*.php"
+        excluded_dirs:
+            - vendor
+            - app
+
+    # Analyzes the size and structure of a PHP project.
+    php_pdepend:
+        enabled:              true
+        command:              pdepend
+        configuration_file:   ~ 
+        suffixes:
+            - php
+        excluded_dirs:
+            - vendor
+            - app
+            - web
+            - src/Op/CartBundle/DataFixtures
+            - src/Op/CartBundle/Tests
+            - src/Op/DvorBundle/Tests
+
+    # Runs HHVM's analyses on your project.
+    php_hhvm:             
+        command:              hhvm 
+        extensions:           
+
+            # Default:
+            - php
+        enabled:              false
+#        filter:
+#            paths:                []
+#            excluded_paths:       []
+        config:               
+
+            # Checks for bad include files.
+            bad_php_include_file:  false 
+
+            # Checks for non-existent include files.
+            php_include_file_not_found:  false 
+
+            # Checks for unknown classes as they prevent optimization (requires all vendors).
+            unknown_class:        false 
+
+            # Checks for unknown base classes as they prevent optimization (requires all vendors).
+            unknown_base_class:   false 
+
+            # Checks for unknown functions as they prevent optimization (requires all vendors).
+            unknown_function:     false 
+
+            # Checks for eval statements as they prevent optimization.
+            use_evaluation:       false 
+
+            # Checks for undeclared variables.
+            use_undeclared_variable:  true 
+
+            # Checks for undeclared global variables.
+            use_undeclared_global_variable:  false 
+
+            # Checks for undeclared constants.
+            use_undeclared_constant:  true 
+
+            # Checks for unknown methods (requires all vendors).
+            unknown_object_method:  false 
+
+            # Checks for invalid magic methods.
+            invalid_magic_method:  true 
+
+            # Checks for invalid constructor calls.
+            bad_constructor_call:  true 
+
+            # Checks for duplicate variable declaration.
+            declared_variable_twice:  true 
+
+            # Checks for duplicate constant definition.
+            declared_constant_twice:  true 
+
+            # Checks for invalid defines.
+            bad_define:           true 
+
+            # Checks whether there are required parameters after optional ones.
+            required_after_optional_param:  true 
+
+            # Checks for redundant parameters.
+            redundant_parameter:  true 
+
+            # Checks for too few arguments in calls.
+            too_few_argument:     true 
+
+            # Checks for too many arguments in calls.
+            too_many_argument:    true 
+
+            # Checks for bad argument types.
+            bad_argument_type:    true 
+
+            # Checks for statements without effects.
+            statement_has_no_effect:  true 
+
+            # Checks for usage of void return types.
+            use_void_return:      true 
+
+            # Checks for usage of $this in a static context.
+            missing_object_context:  true 
+
+            # Checks whether there are multiple default statements in switch contexts.
+            more_than_one_default:  true 
+
+            # Checks whether array elements are valid.
+            invalid_array_element:  true 
+
+            # Checks inheritance hierarchy for validity.
+            invalid_derivation:   true 
+
+            # Checks overrides for validity.
+            invalid_override:     true 
+
+            # Checks that $this is not re-assigned.
+            reassign_this:        true 
+
+            # Checks for missing implementations of abstract methods.
+            missing_abstract_method_impl:  true 
+
+            # Checks for invalid pass-by-reference.
+            bad_pass_by_reference:  true 
+
+            # Checks for conditional class loading as this prevents optimization.
+            conditional_class_loading:  true 
+
+            # Checks for invalid GOTO labels.
+            goto_undef_label:     true 
+
+            # Checks for invalid GOTO blocks.
+            goto_invalid_block:   true 
+
+            # Checks for abstract attributes.
+            abstract_property:    true 
+
+            # Checks for unknown traits as they prevent optimization (requires all vendors).
+            unknown_trait:        false 
+
+            # Checks whether method are declared multiple times in different traits.
+            method_in_multiple_traits:  true 
+
+            # Checks for unknown trait methods as they prevent optimization (requires all vendors).
+            unknown_trait_method:  true 
+
+            # Checks for invalid access modifiers.
+            invalid_access_modifier:  true 
+
+            # Checks for cyclic dependencies between traits.
+            cyclic_dependent_traits:  true 
+
+            # Checks for invalid trait statements.
+            invalid_trait_statement:  true 
+
+            # Checks whether a trait has been declared twice.
+            redeclared_trait:     true 
+
+            # Checks for invalid instantiations.
+            invalid_instantiation:  true 
+#        path_configs:
+#
+#            # Prototype
+#            -
+#                paths:                []
+#                enabled:              true
+#                config:
+#
+#                    # Checks for bad include files.
+#                    bad_php_include_file:  false
+#
+#                    # Checks for non-existent include files.
+#                    php_include_file_not_found:  false
+#
+#                    # Checks for unknown classes as they prevent optimization (requires all vendors).
+#                    unknown_class:        false
+#
+#                    # Checks for unknown base classes as they prevent optimization (requires all vendors).
+#                    unknown_base_class:   false
+#
+#                    # Checks for unknown functions as they prevent optimization (requires all vendors).
+#                    unknown_function:     false
+#
+#                    # Checks for eval statements as they prevent optimization.
+#                    use_evaluation:       false
+#
+#                    # Checks for undeclared variables.
+#                    use_undeclared_variable:  true
+#
+#                    # Checks for undeclared global variables.
+#                    use_undeclared_global_variable:  false
+#
+#                    # Checks for undeclared constants.
+#                    use_undeclared_constant:  true
+#
+#                    # Checks for unknown methods (requires all vendors).
+#                    unknown_object_method:  false
+#
+#                    # Checks for invalid magic methods.
+#                    invalid_magic_method:  true
+#
+#                    # Checks for invalid constructor calls.
+#                    bad_constructor_call:  true
+#
+#                    # Checks for duplicate variable declaration.
+#                    declared_variable_twice:  true
+#
+#                    # Checks for duplicate constant definition.
+#                    declared_constant_twice:  true
+#
+#                    # Checks for invalid defines.
+#                    bad_define:           true
+#
+#                    # Checks whether there are required parameters after optional ones.
+#                    required_after_optional_param:  true
+#
+#                    # Checks for redundant parameters.
+#                    redundant_parameter:  true
+#
+#                    # Checks for too few arguments in calls.
+#                    too_few_argument:     true
+#
+#                    # Checks for too many arguments in calls.
+#                    too_many_argument:    true
+#
+#                    # Checks for bad argument types.
+#                    bad_argument_type:    true
+#
+#                    # Checks for statements without effects.
+#                    statement_has_no_effect:  true
+#
+#                    # Checks for usage of void return types.
+#                    use_void_return:      true
+#
+#                    # Checks for usage of $this in a static context.
+#                    missing_object_context:  true
+#
+#                    # Checks whether there are multiple default statements in switch contexts.
+#                    more_than_one_default:  true
+#
+#                    # Checks whether array elements are valid.
+#                    invalid_array_element:  true
+#
+#                    # Checks inheritance hierarchy for validity.
+#                    invalid_derivation:   true
+#
+#                    # Checks overrides for validity.
+#                    invalid_override:     true
+#
+#                    # Checks that $this is not re-assigned.
+#                    reassign_this:        true
+#
+#                    # Checks for missing implementations of abstract methods.
+#                    missing_abstract_method_impl:  true
+#
+#                    # Checks for invalid pass-by-reference.
+#                    bad_pass_by_reference:  true
+#
+#                    # Checks for conditional class loading as this prevents optimization.
+#                    conditional_class_loading:  true
+#
+#                    # Checks for invalid GOTO labels.
+#                    goto_undef_label:     true
+#
+#                    # Checks for invalid GOTO blocks.
+#                    goto_invalid_block:   true
+#
+#                    # Checks for abstract attributes.
+#                    abstract_property:    true
+#
+#                    # Checks for unknown traits as they prevent optimization (requires all vendors).
+#                    unknown_trait:        false
+#
+#                    # Checks whether method are declared multiple times in different traits.
+#                    method_in_multiple_traits:  true
+#
+#                    # Checks for unknown trait methods as they prevent optimization (requires all vendors).
+#                    unknown_trait_method:  true
+#
+#                    # Checks for invalid access modifiers.
+#                    invalid_access_modifier:  true
+#
+#                    # Checks for cyclic dependencies between traits.
+#                    cyclic_dependent_traits:  true
+#
+#                    # Checks for invalid trait statements.
+#                    invalid_trait_statement:  true
+#
+#                    # Checks whether a trait has been declared twice.
+#                    redeclared_trait:     true
+#
+#                    # Checks for invalid instantiations.
+#                    invalid_instantiation:  true
+
+    # Allows to incorporate code coverage information provided by an external service.
+    external_code_coverage:  
+        timeout:              300 
+        enabled:              false 
+#        filter:
+#            paths:                []
+#            excluded_paths:       []
+
+#    # Runs Custom Commands
+#    custom_commands:
+#
+#        # Prototype
+#        -
+#            command:              ~ # Required
+#            output_file:          ~
+#
+#            # The scope that this command analyzes. Either the entire project, or the project's files separately.
+#            scope:                file # Allowed Values: "project", "file"
+#
+#            # If the command computes statistical metrics, you can increase the number of iterations to achieve a more reliable estimate.
+#            iterations:           1
+#            filter:
+#                paths:                []
+#                excluded_paths:       []
